@@ -48,6 +48,9 @@ The app runs on port 5000 and is configured via the "Start Server" workflow whic
 - Added brush size selection with visual dots and active state highlighting
 - Tools now show purple highlight when selected
 - Added SVG icons for pencil, undo, and trash tools
+- Fixed round counter to update properly during gameplay
+- Forced desktop mode viewport for consistent experience on mobile
+- Removed quick color row (kept color picker in toolbar only)
 
 ## Development Notes
 - Server binds to `0.0.0.0:5000` for Replit compatibility

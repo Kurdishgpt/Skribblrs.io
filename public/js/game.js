@@ -174,8 +174,6 @@ socket.on('chooseWord', async ([word1, word2, word3]) => {
     document.querySelector('#wordDiv').innerHTML = '';
     document.querySelector('#wordDiv').append(p, btn1, btn2, btn3);
     document.querySelector('#tools').classList.remove('d-none');
-    const quickColors = document.querySelector('#quickColors');
-    if (quickColors) quickColors.classList.remove('d-none');
     await animateCSS('#tools', 'fadeInUp');
     document.querySelector('#clock').textContent = 0;
     clearInterval(timerID);
@@ -198,6 +196,10 @@ socket.on('message', appendMessage);
 socket.on('closeGuess', (data) => appendMessage(data, { closeGuess: true }));
 socket.on('correctGuess', (data) => appendMessage(data, { correctGuess: true }));
 socket.on('lastWord', ({ word }) => appendMessage({ message: `The word was ${word}` }, { lastWord: true }));
+
+socket.on('updateRound', ({ current, total }) => {
+    document.querySelector('#roundDisplay').textContent = `Round ${current} of ${total}`;
+});
 
 socket.on('updateScore', ({
     playerID,

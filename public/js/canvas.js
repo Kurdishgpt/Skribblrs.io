@@ -5,7 +5,6 @@ const mdBrush = document.getElementById('md-brush');
 const lgBrush = document.getElementById('lg-brush');
 const xlBrush = document.getElementById('xl-brush');
 const clearCanvas = document.getElementById('clearCanvas');
-const colors = Array.from(document.getElementsByClassName('color'));
 const brushItems = [smBrush, mdBrush, lgBrush, xlBrush];
 const pad = new Sketchpad(canvas, {
     line: {
@@ -87,15 +86,6 @@ function throttle(callback, delay) {
     };
 }
 
-colors.forEach((color) => {
-    color.addEventListener('click', function () {
-        if (pad.readOnly) return;
-        current.lineColor = getComputedStyle(this).backgroundColor;
-        pad.setLineColor(current.lineColor);
-        document.querySelector('.selected-color').style.backgroundColor = current.lineColor;
-    }, false);
-});
-
 const colorPickerBtn = document.getElementById('colorPickerBtn');
 const colorPalette = document.getElementById('colorPalette');
 const paletteColors = Array.from(document.getElementsByClassName('palette-color'));
@@ -158,6 +148,4 @@ socket.on('disableCanvas', async () => {
     pad.setReadOnly(true);
     await animateCSS('#tools', 'fadeOutDown');
     document.querySelector('#tools').classList.add('d-none');
-    const quickColors = document.querySelector('#quickColors');
-    if (quickColors) quickColors.classList.add('d-none');
 });

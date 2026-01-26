@@ -44,6 +44,7 @@ class Game {
         socket.to(socket.roomID).emit('startGame');
         for (let j = 0; j < rounds; j++) {
             /* eslint-disable no-await-in-loop */
+            io.to(socket.roomID).emit('updateRound', { current: j + 1, total: rounds });
             for (let i = 0; i < players.length; i++) {
                 await this.giveTurnTo(players, i);
             }

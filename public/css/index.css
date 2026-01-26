@@ -293,21 +293,6 @@ canvas {
     position: relative;
 }
 
-/* Quick Colors Row */
-.quick-colors {
-    background-color: #eee;
-    padding: 4px 8px;
-    display: flex;
-    flex-direction: column;
-    align-items: center;
-    gap: 2px;
-}
-
-.quick-color-row {
-    display: flex;
-    gap: 1px;
-}
-
 .white {
     background-color: #fff;
     border: 1px solid #ccc;
