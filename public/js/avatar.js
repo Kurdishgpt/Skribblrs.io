@@ -1,10 +1,10 @@
 const style = document.querySelector('#style');
 const bgColor = document.querySelector('#bgColor');
 const playerName = document.querySelector('#playerName');
-const baseURL = 'https://avatars.dicebear.com/api';
+const baseURL = 'https://api.dicebear.com/9.x';
 const my = {
     name: localStorage.getItem('name') || '',
-    avatar: localStorage.getItem('avatar') || 'https://avatars.dicebear.com/api/avataaars/.svg',
+    avatar: localStorage.getItem('avatar') || 'https://api.dicebear.com/9.x/avataaars/svg?seed=default',
 };
 
 const settings = document.createElement('script');
@@ -16,7 +16,8 @@ document.body.append(settings, game);
 function updateAvatar() {
     const sprite = style.value.toLowerCase();
     const color = bgColor.value.substring(1);
-    const url = `${baseURL}/${sprite}/${playerName.value}.svg?b=%23${color}`;
+    const seed = playerName.value || 'default';
+    const url = `${baseURL}/${sprite}/svg?seed=${encodeURIComponent(seed)}&backgroundColor=${color}`;
     const newAvatar = document.createElement('img');
     newAvatar.src = url;
     newAvatar.alt = 'Avatar';
