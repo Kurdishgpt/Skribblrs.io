@@ -4,7 +4,7 @@ const socket = io();
 const params = window.location.toString().substring(window.location.toString().indexOf('?'));
 const searchParams = new URLSearchParams(params);
 const copyBtn = document.querySelector('#copy');
-let language = 'English';
+let language = 'kurdish';
 
 const pop = new Howl({
     src: ['audio/pop.mp3'],
@@ -144,7 +144,7 @@ document.querySelector('#startGame').addEventListener('click', async () => {
 document.querySelector('#language').addEventListener('input', function () {
     // eslint-disable-next-line no-unused-vars
     language = this.value;
-    if (language === 'English') return;
+    if (language === 'kurdish') return;
     if (document.querySelector('#transliterate')) return;
     const script = document.createElement('script');
     script.id = 'transliterate';

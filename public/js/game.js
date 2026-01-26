@@ -136,7 +136,7 @@ socket.on('settingsUpdate', (data) => {
     document.querySelector('#language').value = data.language;
     // eslint-disable-next-line no-global-assign
     language = data.language;
-    if (language === 'English') return;
+    if (language === 'kurdish') return;
     if (document.querySelector('#transliterate')) return;
     const script = document.createElement('script');
     script.id = 'transliterate';

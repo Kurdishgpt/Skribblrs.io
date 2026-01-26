@@ -14,7 +14,7 @@ class Room {
             rounds: 2,
             time: 40 * 1000,
             customWords: [],
-            language: 'English',
+            language: 'kurdish',
         };
         games[id][socket.id] = {};
         games[id][socket.id].score = 0;
