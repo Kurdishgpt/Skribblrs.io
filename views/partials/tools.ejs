@@ -8,36 +8,74 @@
     "#808080", "#a52a2a", "#ff6347", "#ffa500", "#adff2f", "#32cd32", "#1e90ff", "#9400d3", "#ff1493", "#deb887", "#8b4513", "#f5deb3"
 ] %>
 
-<div class="row mx-0 d-none" id="tools">
-    <div class="col-2 col-xl-1 px-0 position-relative">
-        <div class="selected-color" id="colorPickerBtn" role="button" title="Click to open color palette"></div>
-        <div class="color-palette d-none" id="colorPalette">
-            <% for(let row = 0; row < 3; row++) { %>
-                <div class="color-row">
-                    <% for(let col = 0; col < 12; col++) { %>
-                        <div class="palette-color" style="background-color: <%= extendedColors[row * 12 + col] %>" role="button" data-color="<%= extendedColors[row * 12 + col] %>"></div>
+<div class="toolbar-container d-none" id="tools">
+    <div class="toolbar">
+        <div class="tool-group">
+            <div class="tool-item position-relative">
+                <div class="selected-color" id="colorPickerBtn" role="button" title="Click to open color palette"></div>
+                <div class="color-palette d-none" id="colorPalette">
+                    <% for(let row = 0; row < 3; row++) { %>
+                        <div class="color-row">
+                            <% for(let col = 0; col < 12; col++) { %>
+                                <div class="palette-color" style="background-color: <%= extendedColors[row * 12 + col] %>" role="button" data-color="<%= extendedColors[row * 12 + col] %>"></div>
+                            <% } %>
+                        </div>
                     <% } %>
                 </div>
-            <% } %>
+            </div>
+        </div>
+        
+        <div class="tool-group brush-sizes">
+            <div class="tool-item brush-item" id="sm-brush" data-linesize="5" role="button" title="Small brush">
+                <span class="brush-dot brush-sm"></span>
+            </div>
+            <div class="tool-item brush-item" id="md-brush" data-linesize="10" role="button" title="Medium brush">
+                <span class="brush-dot brush-md"></span>
+            </div>
+            <div class="tool-item brush-item" id="lg-brush" data-linesize="15" role="button" title="Large brush">
+                <span class="brush-dot brush-lg"></span>
+            </div>
+            <div class="tool-item brush-item" id="xl-brush" data-linesize="20" role="button" title="Extra large brush">
+                <span class="brush-dot brush-xl"></span>
+            </div>
+        </div>
+        
+        <div class="tool-group">
+            <div class="tool-item tool-btn active" id="pencilTool" role="button" title="Pencil">
+                <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                    <path d="M17 3a2.85 2.83 0 1 1 4 4L7.5 20.5 2 22l1.5-5.5Z"/>
+                    <path d="m15 5 4 4"/>
+                </svg>
+            </div>
+        </div>
+        
+        <div class="tool-group">
+            <div class="tool-item tool-btn" id="undoBtn" role="button" title="Undo">
+                <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                    <path d="M3 7v6h6"/>
+                    <path d="M3 13a9 9 0 1 0 3-7.7L3 7"/>
+                </svg>
+            </div>
+            <div class="tool-item tool-btn" id="clearCanvas" role="button" title="Clear canvas">
+                <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                    <path d="M3 6h18"/>
+                    <path d="M19 6v14c0 1-1 2-2 2H7c-1 0-2-1-2-2V6"/>
+                    <path d="M8 6V4c0-1 1-2 2-2h4c1 0 2 1 2 2v2"/>
+                </svg>
+            </div>
         </div>
     </div>
-    <div class="col-10 text-end text-xl-start col-xl-5 px-0">
-        <div class="d-inline-flex align-top">
-            <% for(let i=0; i < 11; i++) { %>
-                <div class="color <%= colorClasses[i] %>" role="button"></div>
-            <% } %>
-        </div>
-        <div class="d-inline-flex">
-            <% for(let i=11; i < 22; i++) { %>
-                <div class="color <%= colorClasses[i] %>" role="button"></div>
-            <% } %>
-        </div>
+</div>
+
+<div class="quick-colors d-none" id="quickColors">
+    <div class="quick-color-row">
+        <% for(let i=0; i < 11; i++) { %>
+            <div class="color <%= colorClasses[i] %>" role="button"></div>
+        <% } %>
     </div>
-    <div class="col-12 col-xl-6 text-center text-xl-end px-0">
-        <img src="/images/brush-sm.png" id="sm-brush" data-linesize="5" role="button" alt="small brush">
-        <img src="/images/brush-md.png" id="md-brush" data-linesize="10" role="button" alt="medium brush">
-        <img src="/images/brush-lg.png" id="lg-brush" data-linesize="15" role="button" alt="large brush">
-        <img src="/images/brush-xl.png" id="xl-brush" data-linesize="20" role="button" alt="extra large brush">
-        <img src="/images/delete.png" id="clearCanvas" role="button" alt="clear canvas">
+    <div class="quick-color-row">
+        <% for(let i=11; i < 22; i++) { %>
+            <div class="color <%= colorClasses[i] %>" role="button"></div>
+        <% } %>
     </div>
 </div>

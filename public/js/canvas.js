@@ -6,6 +6,7 @@ const lgBrush = document.getElementById('lg-brush');
 const xlBrush = document.getElementById('xl-brush');
 const clearCanvas = document.getElementById('clearCanvas');
 const colors = Array.from(document.getElementsByClassName('color'));
+const brushItems = [smBrush, mdBrush, lgBrush, xlBrush];
 const pad = new Sketchpad(canvas, {
     line: {
         size: 5,
@@ -18,10 +19,15 @@ const current = {
 };
 pad.setReadOnly(true);
 
+smBrush.classList.add('active');
+
 function setLineSize() {
     if (pad.readOnly) return;
     current.lineSize = Number(this.dataset.linesize);
     pad.setLineSize(Number(this.dataset.linesize));
+    
+    brushItems.forEach(brush => brush.classList.remove('active'));
+    this.classList.add('active');
 }
 
 function onMouseDown(e) {
@@ -70,7 +76,6 @@ function onMouseMove(e) {
     current.y = (e.clientY - rect.top) / h;
 }
 
-// limit the number of events per second
 function throttle(callback, delay) {
     let previousCall = new Date().getTime();
     return (...args) => {
@@ -83,7 +88,6 @@ function throttle(callback, delay) {
 }
 
 colors.forEach((color) => {
-    // eslint-disable-next-line func-names
     color.addEventListener('click', function () {
         if (pad.readOnly) return;
         current.lineColor = getComputedStyle(this).backgroundColor;
@@ -154,4 +158,6 @@ socket.on('disableCanvas', async () => {
     pad.setReadOnly(true);
     await animateCSS('#tools', 'fadeOutDown');
     document.querySelector('#tools').classList.add('d-none');
+    const quickColors = document.querySelector('#quickColors');
+    if (quickColors) quickColors.classList.add('d-none');
 });
