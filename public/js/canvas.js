@@ -92,6 +92,31 @@ colors.forEach((color) => {
     }, false);
 });
 
+const colorPickerBtn = document.getElementById('colorPickerBtn');
+const colorPalette = document.getElementById('colorPalette');
+const paletteColors = Array.from(document.getElementsByClassName('palette-color'));
+
+colorPickerBtn.addEventListener('click', () => {
+    if (pad.readOnly) return;
+    colorPalette.classList.toggle('d-none');
+});
+
+paletteColors.forEach((color) => {
+    color.addEventListener('click', function () {
+        if (pad.readOnly) return;
+        current.lineColor = this.dataset.color;
+        pad.setLineColor(current.lineColor);
+        document.querySelector('.selected-color').style.backgroundColor = current.lineColor;
+        colorPalette.classList.add('d-none');
+    }, false);
+});
+
+document.addEventListener('click', (e) => {
+    if (!colorPickerBtn.contains(e.target) && !colorPalette.contains(e.target)) {
+        colorPalette.classList.add('d-none');
+    }
+});
+
 smBrush.addEventListener('click', setLineSize);
 mdBrush.addEventListener('click', setLineSize);
 lgBrush.addEventListener('click', setLineSize);

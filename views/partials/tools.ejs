@@ -2,9 +2,24 @@
     , "pink1" , "brown1" , "black" , "grey2" , "red2" , "orange2" , "yellow2" , "green2" , "skyblue2" , "blue2"
     , "purple2" , "pink2" , "brown2" ] %>
 
+<% const extendedColors = [
+    "#ffffff", "#c1c1c1", "#ef130b", "#ff7100", "#ffe400", "#00cc00", "#00b2ff", "#231fd3", "#a300ba", "#d37caa", "#a0522d", "#ffc0cb",
+    "#000000", "#4c4c4c", "#740b07", "#c23800", "#e8a200", "#005510", "#00569e", "#0e0865", "#550069", "#a75574", "#63300d", "#ffb6c1",
+    "#808080", "#a52a2a", "#ff6347", "#ffa500", "#adff2f", "#32cd32", "#1e90ff", "#9400d3", "#ff1493", "#deb887", "#8b4513", "#f5deb3"
+] %>
+
 <div class="row mx-0 d-none" id="tools">
-    <div class="col-2 col-xl-1 px-0">
-        <div class="selected-color"></div>
+    <div class="col-2 col-xl-1 px-0 position-relative">
+        <div class="selected-color" id="colorPickerBtn" role="button" title="Click to open color palette"></div>
+        <div class="color-palette d-none" id="colorPalette">
+            <% for(let row = 0; row < 3; row++) { %>
+                <div class="color-row">
+                    <% for(let col = 0; col < 12; col++) { %>
+                        <div class="palette-color" style="background-color: <%= extendedColors[row * 12 + col] %>" role="button" data-color="<%= extendedColors[row * 12 + col] %>"></div>
+                    <% } %>
+                </div>
+            <% } %>
+        </div>
     </div>
     <div class="col-10 text-end text-xl-start col-xl-5 px-0">
         <div class="d-inline-flex align-top">
