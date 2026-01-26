@@ -43,6 +43,11 @@ The app runs on port 5000 and is configured via the "Start Server" workflow whic
 - Removed developer attribution footer
 - Fixed avatar system by upgrading to DiceBear API v9.x
 - Updated avatar style options for new API compatibility
+- Redesigned toolbar with skribbl.io style (blue bottom toolbar)
+- Added visual color selection indicator (selected color shown as 50x50 box)
+- Added brush size selection with visual dots and active state highlighting
+- Tools now show purple highlight when selected
+- Added SVG icons for pencil, undo, and trash tools
 
 ## Development Notes
 - Server binds to `0.0.0.0:5000` for Replit compatibility
