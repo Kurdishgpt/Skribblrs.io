@@ -147,6 +147,11 @@ div.players div.row:nth-of-type(2n) {
     background-color: #fff;
 }
 
+.player-avatar {
+    width: 60px;
+    height: 60px;
+}
+
 /* chat */
 .messages {
     overflow-y: auto;

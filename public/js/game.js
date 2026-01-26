@@ -58,10 +58,10 @@ function createScoreCard(players) {
         const score = document.createTextNode('Score: 0');
 
         img.src = player.avatar;
-        img.classList.add('img-fluid', 'rounded-circle');
+        img.classList.add('img-fluid', 'rounded-circle', 'player-avatar');
         div.classList.add('row', 'justify-content-end', 'py-1', 'align-items-center');
-        avatar.classList.add('col-5', 'col-xl-4');
-        details.classList.add('col-7', 'col-xl-6', 'text-center', 'my-auto');
+        avatar.classList.add('col-5', 'col-xl-5');
+        details.classList.add('col-7', 'col-xl-7', 'text-center', 'my-auto');
         p1.classList.add('mb-0');
         p2.classList.add('mb-0');
         div.id = `skribblr-${player.id}`;
@@ -71,6 +71,14 @@ function createScoreCard(players) {
         p1.append(name);
         p2.append(score);
         document.querySelector('.players').append(div);
+
+        // Add to chat area players list as well
+        const chatDiv = div.cloneNode(true);
+        chatDiv.id = `chat-skribblr-${player.id}`;
+        chatDiv.classList.remove('justify-content-end');
+        chatDiv.classList.add('justify-content-center', 'border-bottom', 'pb-1');
+        const chatPlayers = document.querySelector('.players-chat');
+        if (chatPlayers) chatPlayers.append(chatDiv);
     });
 }
 
@@ -197,6 +205,11 @@ socket.on('updateScore', ({
 }) => {
     document.querySelector(`#skribblr-${playerID}>div p:last-child`).textContent = `Score: ${score}`;
     document.querySelector(`#skribblr-${drawerID}>div p:last-child`).textContent = `Score: ${drawerScore}`;
+
+    const chatPlayer = document.querySelector(`#chat-skribblr-${playerID}>div p:last-child`);
+    if (chatPlayer) chatPlayer.textContent = `Score: ${score}`;
+    const chatDrawer = document.querySelector(`#chat-skribblr-${drawerID}>div p:last-child`);
+    if (chatDrawer) chatDrawer.textContent = `Score: ${drawerScore}`;
 });
 
 socket.on('endGame', async ({ stats }) => {
