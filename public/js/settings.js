@@ -3,7 +3,6 @@
 const socket = io();
 const params = window.location.toString().substring(window.location.toString().indexOf('?'));
 const searchParams = new URLSearchParams(params);
-const copyBtn = document.querySelector('#copy');
 let language = 'kurdish';
 
 const pop = new Howl({
@@ -101,7 +100,7 @@ if (searchParams.has('id')) {
         await animateCSS('#settings div', 'jackInTheBox');
         my.id = socket.id;
         if (searchParams.has('id')) {
-            document.querySelector('#gameLink').value = `${window.location.protocol}//${window.location.host}/?id=${searchParams.get('id')}`;
+            document.querySelector('#roomCodeDisplay').textContent = searchParams.get('id');
             putPlayer(my);
         }
         socket.emit('joinRoom', { id: searchParams.get('id'), player: my });
@@ -122,17 +121,12 @@ if (searchParams.has('id')) {
         my.id = socket.id;
         socket.emit('newPrivateRoom', my);
         socket.on('newPrivateRoom', (data) => {
-            document.querySelector('#gameLink').value = `${window.location.protocol}//${window.location.host}/?id=${data.gameID}`;
+            document.querySelector('#roomCodeDisplay').textContent = data.gameID;
             putPlayer(my);
         });
     });
 }
 
-copyBtn.addEventListener('click', (e) => {
-    e.preventDefault();
-    document.querySelector('#gameLink').select();
-    document.execCommand('copy');
-});
 
 const joinByCodeBtn = document.querySelector('#joinByCode');
 if (joinByCodeBtn) {
