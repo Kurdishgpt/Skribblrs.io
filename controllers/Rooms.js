@@ -30,6 +30,18 @@ class Room {
     async joinRoom(data) {
         const { io, socket } = this;
         const roomID = data.id;
+        
+        // Ensure the game exists for this roomID
+        if (!games[roomID]) {
+            console.log(`Room ${roomID} not found, creating it.`);
+            games[roomID] = {
+                rounds: 2,
+                time: 40 * 1000,
+                customWords: [],
+                language: 'kurdish',
+            };
+        }
+        
         const players = Array.from(await io.in(roomID).allSockets());
         games[roomID][socket.id] = {};
         games[roomID][socket.id].score = 0;
@@ -42,8 +54,10 @@ class Room {
         socket.emit('otherPlayers',
             players.reduce((acc, id) => {
                 if (socket.id !== id) {
-                    const { player } = io.of('/').sockets.get(id);
-                    acc.push(player);
+                    const s = io.of('/').sockets.get(id);
+                    if (s && s.player) {
+                        acc.push(s.player);
+                    }
                 }
                 return acc;
             }, []));
