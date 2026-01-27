@@ -247,6 +247,11 @@ socket.on('endGame', async ({ stats }) => {
     gameOver.play();
     document.querySelector('#gameEnded').classList.remove('d-none');
     animateCSS('#gameEnded>div', 'fadeInRight');
+    
+    // Auto-restart after 5 seconds
+    setTimeout(() => {
+        window.location.reload();
+    }, 5000);
 });
 
 // eslint-disable-next-line func-names
