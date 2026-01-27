@@ -168,6 +168,10 @@ socket.on('chooseWord', async ([word1, word2, word3]) => {
     document.querySelector('#wordDiv').append(p, btn1, btn2, btn3);
     document.querySelector('#tools').classList.remove('d-none');
     await animateCSS('#tools', 'fadeInUp');
+    setTimeout(async () => {
+        await animateCSS('#tools', 'fadeOutDown');
+        document.querySelector('#tools').classList.add('d-none');
+    }, 1000);
     document.querySelector('#clock').textContent = 0;
     clearInterval(timerID);
     clock.stop();
