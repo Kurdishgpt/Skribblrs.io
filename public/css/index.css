@@ -166,67 +166,84 @@ a:hover {
         border-radius: 0;
         height: 100%;
     }
+
+    .tools-overlay {
+        position: relative !important;
+        bottom: 0 !important;
+        padding: 4px !important;
+    }
+
+    .tool-item {
+        width: 38px !important;
+        height: 38px !important;
+        flex: 0 0 38px !important;
+    }
 }
 
 /* Toolbar fixes */
 .tools-overlay {
-    background-color: #2c5aa0 !important;
+    background-color: #eee !important;
     padding: 8px;
-    border-top: none;
+    border-top: 1px solid #ddd;
     width: 100%;
     flex-shrink: 0;
+    display: flex !important;
+    justify-content: center;
+    align-items: center;
+}
+
+.toolbar-container {
+    width: 100%;
     display: flex !important;
     justify-content: center;
 }
 
 .toolbar {
-    display: flex;
-    flex-direction: row;
-    flex-wrap: nowrap;
-    align-items: center;
-    justify-content: center;
-    gap: 8px;
+    display: flex !important;
+    flex-direction: row !important;
+    flex-wrap: nowrap !important;
+    align-items: center !important;
+    justify-content: center !important;
+    gap: 12px !important;
     background-color: transparent !important;
+    width: auto !important;
 }
 
 .tool-group {
-    display: flex;
-    flex-direction: row;
-    flex-wrap: nowrap;
-    align-items: center;
-    background-color: transparent;
-    border: none;
-    border-radius: 0;
-    overflow: visible;
-    gap: 8px;
+    display: flex !important;
+    flex-direction: row !important;
+    flex-wrap: nowrap !important;
+    align-items: center !important;
+    background-color: transparent !important;
+    border: none !important;
+    gap: 12px !important;
 }
 
 .tool-item {
-    width: 42px;
-    height: 42px;
-    flex-shrink: 0;
-    display: flex;
-    align-items: center;
-    justify-content: center;
+    width: 44px !important;
+    height: 44px !important;
+    flex: 0 0 44px !important;
+    display: flex !important;
+    align-items: center !important;
+    justify-content: center !important;
     cursor: pointer;
-    border: 1px solid rgba(0,0,0,0.1);
-    border-radius: 4px;
-    background-color: #fff;
-    color: #444;
+    border: 1px solid #ccc !important;
+    border-radius: 6px !important;
+    background-color: #fff !important;
+    color: #333 !important;
     transition: all 0.2s ease;
 }
 
 .tool-item:hover {
-    background-color: #f8f9fa;
-    border-color: #ccc;
-    transform: translateY(-1px);
+    background-color: #f0f0f0 !important;
+    border-color: #bbb !important;
 }
 
 .tool-item.active {
-    background-color: #007bff !important;
-    border-color: #0056b3 !important;
+    background-color: #5d3fd3 !important;
+    border-color: #4b32a7 !important;
     color: #fff !important;
-    box-shadow: 0 2px 4px rgba(0,0,0,0.1);
+    box-shadow: 0 2px 5px rgba(0,0,0,0.2) !important;
 }
 
 .tool-item .brush-dot {
@@ -462,6 +479,8 @@ body {
 
 [dir="rtl"] #tools {
     direction: ltr;
+    display: flex !important;
+    justify-content: center;
 }
 
 [dir="rtl"] .form-floating > label {
