@@ -222,8 +222,7 @@ a:hover {
 .color-palette {
     position: absolute;
     bottom: 58px;
-    left: 50%;
-    transform: translateX(-50%);
+    left: 0;
     background-color: #fff;
     border: 1px solid #ccc;
     border-radius: 4px;
@@ -233,14 +232,12 @@ a:hover {
     display: flex;
     flex-direction: column;
     min-width: 280px;
-    margin-left: -128px;
 }
 
 .brush-palette {
     position: absolute;
     bottom: 58px;
-    left: 50%;
-    transform: translateX(-50%);
+    left: 0;
     background-color: #fff;
     border: 1px solid #ccc;
     border-radius: 4px;
@@ -300,8 +297,7 @@ a:hover {
     content: '';
     position: absolute;
     bottom: -8px;
-    left: 50%;
-    transform: translateX(-50%);
+    left: 20px;
     border-left: 8px solid transparent;
     border-right: 8px solid transparent;
     border-top: 8px solid #fff;
