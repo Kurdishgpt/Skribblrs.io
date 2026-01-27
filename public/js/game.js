@@ -49,36 +49,26 @@ function chooseWord(word) {
 function createScoreCard(players) {
     players.forEach((player) => {
         const div = document.createElement('div');
-        const avatar = document.createElement('div');
-        const details = document.createElement('div');
+        const avatarDiv = document.createElement('div');
+        const detailsDiv = document.createElement('div');
         const img = document.createElement('img');
-        const p1 = document.createElement('p');
-        const p2 = document.createElement('p');
-        const name = document.createTextNode(player.name);
-        const score = document.createTextNode('Score: 0');
+        const nameP = document.createElement('p');
+        const scoreP = document.createElement('p');
 
         img.src = player.avatar;
         img.classList.add('img-fluid', 'rounded-circle', 'player-avatar');
-        div.classList.add('row', 'justify-content-end', 'py-1', 'align-items-center');
-        avatar.classList.add('col-5', 'col-xl-5');
-        details.classList.add('col-7', 'col-xl-7', 'text-center', 'my-auto');
-        p1.classList.add('mb-0');
-        p2.classList.add('mb-0');
+        div.classList.add('player-row');
+        nameP.classList.add('player-name');
+        scoreP.classList.add('player-score');
+        
+        nameP.textContent = player.name;
+        scoreP.textContent = 'Points: 0';
+        
         div.id = `skribblr-${player.id}`;
-        div.append(details, avatar);
-        avatar.append(img);
-        details.append(p1, p2);
-        p1.append(name);
-        p2.append(score);
+        avatarDiv.append(img);
+        detailsDiv.append(nameP, scoreP);
+        div.append(avatarDiv, detailsDiv);
         document.querySelector('.players').append(div);
-
-        // Add to chat area players list as well
-        const chatDiv = div.cloneNode(true);
-        chatDiv.id = `chat-skribblr-${player.id}`;
-        chatDiv.classList.remove('justify-content-end');
-        chatDiv.classList.add('justify-content-center', 'border-bottom', 'pb-1');
-        const chatPlayers = document.querySelector('.players-chat');
-        if (chatPlayers) chatPlayers.append(chatDiv);
     });
 }
 
@@ -207,13 +197,11 @@ socket.on('updateScore', ({
     drawerID,
     drawerScore,
 }) => {
-    document.querySelector(`#skribblr-${playerID}>div p:last-child`).textContent = `Score: ${score}`;
-    document.querySelector(`#skribblr-${drawerID}>div p:last-child`).textContent = `Score: ${drawerScore}`;
-
-    const chatPlayer = document.querySelector(`#chat-skribblr-${playerID}>div p:last-child`);
-    if (chatPlayer) chatPlayer.textContent = `Score: ${score}`;
-    const chatDrawer = document.querySelector(`#chat-skribblr-${drawerID}>div p:last-child`);
-    if (chatDrawer) chatDrawer.textContent = `Score: ${drawerScore}`;
+    const playerEl = document.querySelector(`#skribblr-${playerID} .player-score`);
+    if (playerEl) playerEl.textContent = `Points: ${score}`;
+    
+    const drawerEl = document.querySelector(`#skribblr-${drawerID} .player-score`);
+    if (drawerEl) drawerEl.textContent = `Points: ${drawerScore}`;
 });
 
 socket.on('endGame', async ({ stats }) => {

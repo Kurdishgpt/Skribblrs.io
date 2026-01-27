@@ -1,52 +1,40 @@
 <section class="container-fluid d-none" id="gameZone">
-    <div class="game-header py-2">
-        <div class="row align-items-center">
-            <div class="col-3 col-md-2 text-center">
-                <div class="round-info">
-                    <span class="round-number" id="roundDisplay">Round 1 of 3</span>
-                </div>
+    <div class="game-header py-1 px-3">
+        <div class="d-flex align-items-center justify-content-between">
+            <div class="round-info">
+                <span id="roundDisplay">Round 1 of 3</span>
             </div>
-            <div class="col-6 col-md-8 text-center">
-                <div class="word-display">
-                    <span class="guess-label">GUESS THIS</span>
-                    <div id="wordDiv" class="word-underlines"></div>
-                </div>
+            <div class="word-display text-center flex-grow-1">
+                <span class="guess-label">DRAW THIS</span>
+                <div id="wordDiv" class="word-underlines"></div>
             </div>
-            <div class="col-3 col-md-2 text-center">
-                <div class="timer-display">
-                    <span class="timer-number" id="clock">0</span>
-                </div>
+            <div class="timer-display">
+                <span id="clock">0</span>
             </div>
         </div>
     </div>
     
-    <div class="row justify-content-center mx-0 game-content">
-        <div class="col-12 col-lg-9 order-1 order-lg-1">
-            <div class="canvas-container position-relative">
-                <div class="rating-buttons">
-                    <button class="btn-like" id="likeBtn" title="Like">👍</button>
-                    <button class="btn-dislike" id="dislikeBtn" title="Dislike">👎</button>
-                </div>
-                <div id="sketchpad" class="text-end"></div>
-            </div>
-            <%- include('tools') %>
-        </div>
-    </div>
-
-    <div class="row mx-0 game-bottom mt-2">
-        <div class="col-12 col-md-5 col-lg-4 order-2 order-md-1 mb-2 mb-md-0">
+    <div class="game-main-container">
+        <div class="players-column">
             <div class="players-panel">
                 <div class="players"></div>
             </div>
         </div>
-        <div class="col-12 col-md-7 col-lg-8 order-1 order-md-2">
+        
+        <div class="canvas-column">
+            <div class="canvas-container position-relative">
+                <div id="sketchpad"></div>
+                <div class="tools-overlay">
+                    <%- include('tools') %>
+                </div>
+            </div>
+        </div>
+        
+        <div class="chat-column">
             <div class="chat-panel d-flex flex-column">
                 <div class="messages flex-grow-1"></div>
                 <form id="sendMessage" class="chat-input-form">
                     <input class="form-control chat-input" type="text" placeholder="Type your guess here...">
-                    <div class="position-relative">
-                        <ul class="list-group mt-1" id="suggestions"></ul>
-                    </div>
                 </form>
             </div>
         </div>
