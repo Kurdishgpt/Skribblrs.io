@@ -51,6 +51,7 @@ The app runs on port 5000 and is configured via the "Start Server" workflow whic
 - Fixed round counter to update properly during gameplay
 - Forced desktop mode viewport for consistent experience on mobile
 - Removed quick color row (kept color picker in toolbar only)
+- Added join by room code feature on landing page
 
 ## Development Notes
 - Server binds to `0.0.0.0:5000` for Replit compatibility

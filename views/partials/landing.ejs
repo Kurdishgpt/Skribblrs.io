@@ -33,6 +33,13 @@
                 </div>
                 <% if(!roomID) { %>
                     <button class="btn btn-primary mt-3" id="createRoom">دروستکردنی ژووری تایبەت</button>
+                    <div class="w-100 text-center my-3">
+                        <span class="text-muted">ـــــــــ یان ـــــــــ</span>
+                    </div>
+                    <div class="input-group">
+                        <input type="text" class="form-control" id="roomCode" placeholder="کۆدی ژوور بنووسە">
+                        <button class="btn btn-success" id="joinByCode">چوونە ژوور</button>
+                    </div>
                 <% } else { %>
                     <button class="btn btn-primary mt-3" id="playGame">چوونە ناو ژوور</button>
                 <% } %>

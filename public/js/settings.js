@@ -134,6 +134,22 @@ copyBtn.addEventListener('click', (e) => {
     document.execCommand('copy');
 });
 
+const joinByCodeBtn = document.querySelector('#joinByCode');
+if (joinByCodeBtn) {
+    joinByCodeBtn.addEventListener('click', () => {
+        const code = document.querySelector('#roomCode').value.trim();
+        if (code) {
+            window.location.href = `${window.location.protocol}//${window.location.host}/?id=${code}`;
+        }
+    });
+    
+    document.querySelector('#roomCode').addEventListener('keypress', (e) => {
+        if (e.key === 'Enter') {
+            joinByCodeBtn.click();
+        }
+    });
+}
+
 document.querySelector('#startGame').addEventListener('click', async () => {
     showCanvasArea();
     socket.emit('startGame');
