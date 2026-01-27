@@ -1,6 +1,8 @@
 /* eslint-disable func-names */
-/* global io, my, Howl */
-const socket = io();
+/* global my, Howl */
+if (typeof socket === 'undefined') {
+    window.socket = io();
+}
 const params = window.location.toString().substring(window.location.toString().indexOf('?'));
 const searchParams = new URLSearchParams(params);
 let language = 'kurdish';

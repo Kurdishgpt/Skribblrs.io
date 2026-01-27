@@ -1,4 +1,7 @@
-/* global socket, pad, Howl, animateCSS, language */
+/* global pad, Howl, animateCSS, language */
+if (typeof socket === 'undefined') {
+    window.socket = io();
+}
 let timerID = 0;
 let pickWordID = 0;
 let hints = [];

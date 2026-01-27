@@ -1,5 +1,7 @@
 /* eslint-disable no-unused-vars */
-const socket = io();
+if (typeof socket === 'undefined') {
+    window.socket = io();
+}
 const style = document.querySelector('#style');
 const bgColor = document.querySelector('#bgColor');
 const playerName = document.querySelector('#playerName');
