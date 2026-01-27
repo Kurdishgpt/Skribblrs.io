@@ -9,7 +9,7 @@ class Room {
 
     createPrivateRoom(player) {
         const { socket } = this;
-        const id = nanoid(15);
+        const id = nanoid(6);
         games[id] = {
             rounds: 2,
             time: 40 * 1000,
