@@ -155,50 +155,48 @@ a:hover {
 
 /* Toolbar fixes */
 .tools-overlay {
-    background-color: #ffffff !important;
+    background-color: #eee !important;
     padding: 10px;
-    border-top: 2px solid #eee;
+    border-top: 1px solid #ccc;
     width: 100%;
-    z-index: 10;
 }
 
 .toolbar {
     display: flex;
-    flex-direction: column;
+    flex-direction: row; /* Back to horizontal */
     align-items: center;
     justify-content: center;
-    gap: 10px;
-    background-color: #ffffff !important;
+    gap: 4px;
+    background-color: transparent !important;
 }
 
 .tool-group {
     display: flex;
-    gap: 8px;
+    gap: 4px;
     align-items: center;
-    justify-content: center;
-    width: 100%;
 }
 
 .tool-btn, .brush-item, .selected-color {
-    width: 55px;
-    height: 55px;
-    background-color: #f0f0f0;
-    border: 1px solid #ddd;
-    border-radius: 8px;
+    width: 48px;
+    height: 48px;
+    background-color: #fff;
+    border: 1px solid #ccc;
+    border-radius: 4px;
     display: flex;
     align-items: center;
     justify-content: center;
     cursor: pointer;
-    box-shadow: 0 2px 4px rgba(0,0,0,0.05);
-    color: #444;
+    box-shadow: none;
+    color: #000;
 }
 
 .selected-color {
-    border-width: 2px;
+    border: 2px solid #fff;
+    box-shadow: 0 0 0 1px #ccc;
 }
 
 .tool-btn:hover, .brush-item:hover {
-    background-color: #e5e5e5;
+    background-color: #f0f0f0;
 }
 
 .tool-btn.active, .brush-item.active {
@@ -207,21 +205,18 @@ a:hover {
     color: #ffffff !important;
 }
 
-.tool-btn svg {
-    stroke: currentColor;
-}
-
-.tool-btn.active svg {
-    stroke: #ffffff;
-}
-
 .brush-dot {
-    background-color: #444;
+    background-color: #000;
 }
 
 .brush-item.active .brush-dot {
     background-color: #fff;
 }
+
+.tools-overlay {
+    background-color: #eee !important;
+}
+
 
 /* Chat box styling */
 .chat-panel {
