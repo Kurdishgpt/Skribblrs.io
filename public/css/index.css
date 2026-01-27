@@ -170,12 +170,13 @@ a:hover {
 
 /* Toolbar fixes */
 .tools-overlay {
-    background-color: #eee !important;
-    padding: 10px;
-    border-top: 1px solid #ccc;
+    background-color: #2c5aa0 !important;
+    padding: 8px;
+    border-top: none;
     width: 100%;
     flex-shrink: 0;
-    display: block !important;
+    display: flex !important;
+    justify-content: center;
 }
 
 .toolbar {
@@ -183,17 +184,18 @@ a:hover {
     flex-direction: row;
     align-items: center;
     justify-content: center;
-    gap: 0;
-    background-color: #eee !important;
+    gap: 4px;
+    background-color: transparent !important;
 }
 
 .tool-group {
     display: flex;
     align-items: center;
-    background-color: #fff;
-    border: 1px solid #ccc;
-    border-radius: 4px;
+    background-color: transparent;
+    border: none;
+    border-radius: 0;
     overflow: visible;
+    gap: 4px;
 }
 
 .tool-item {
@@ -203,28 +205,28 @@ a:hover {
     align-items: center;
     justify-content: center;
     cursor: pointer;
-    border-right: 1px solid #eee;
+    border: 1px solid rgba(255,255,255,0.2);
+    border-radius: 4px;
     background-color: #fff;
-}
-
-.tool-item:last-child {
-    border-right: none;
+    color: #000;
 }
 
 .tool-item:hover {
-    background-color: #f8f8f8;
+    background-color: #f0f0f0;
 }
 
 .tool-item.active {
     background-color: #b38bff !important;
+    border-color: #fff !important;
     color: #fff !important;
 }
 
 .selected-color {
-    width: 32px;
-    height: 32px;
-    border: 1px solid #ccc;
+    width: 36px;
+    height: 36px;
+    border: 2px solid #fff;
     border-radius: 4px;
+    box-shadow: 0 0 0 1px #888;
 }
 
 .brush-indicator {
@@ -262,6 +264,7 @@ a:hover {
     cursor: pointer;
     background: #fff;
     border-radius: 0;
+    color: #000;
 }
 
 .brush-palette .brush-item:last-child {
