@@ -233,6 +233,7 @@ a:hover {
     display: flex;
     flex-direction: column;
     min-width: 280px;
+    margin-left: -128px;
 }
 
 .brush-palette {
