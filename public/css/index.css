@@ -153,9 +153,9 @@ a:hover {
     }
 }
 
-/* Tool layout fixes */
+/* Toolbar fixes */
 .tools-overlay {
-    background-color: #ffffff;
+    background-color: #ffffff !important;
     padding: 10px;
     border-top: 2px solid #eee;
     width: 100%;
@@ -168,12 +168,45 @@ a:hover {
     justify-content: center;
     gap: 10px;
     flex-wrap: wrap;
+    background-color: #ffffff !important;
 }
 
 .tool-group {
     display: flex;
     gap: 8px;
     align-items: center;
+}
+
+.tool-btn, .brush-item {
+    width: 45px;
+    height: 45px;
+    background-color: #f8f9fa;
+    border: 1px solid #dee2e6;
+    border-radius: 6px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    cursor: pointer;
+    box-shadow: 0 1px 2px rgba(0,0,0,0.05);
+    color: #495057;
+}
+
+.tool-btn:hover, .brush-item:hover {
+    background-color: #e9ecef;
+}
+
+.tool-btn.active, .brush-item.active {
+    background-color: #b38bff;
+    border-color: #8a2be2;
+    color: #ffffff;
+}
+
+.tool-btn svg {
+    stroke: currentColor;
+}
+
+.tool-btn.active svg {
+    stroke: #ffffff;
 }
 
 /* Chat box styling */
