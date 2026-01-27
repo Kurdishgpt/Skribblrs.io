@@ -10,7 +10,6 @@ const pad = new Sketchpad(canvas, {
     line: {
         size: 5,
     },
-    aspectRatio: 5 / 8,
 });
 const current = {
     lineColor: '#000',
