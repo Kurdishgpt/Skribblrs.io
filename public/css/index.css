@@ -91,6 +91,33 @@ a:hover {
     margin: 10px auto;
     border-radius: 8px;
     box-shadow: 0 10px 25px rgba(0,0,0,0.3);
+    position: relative;
+    overflow: hidden;
+}
+
+#sketchpad {
+    width: 100%;
+    height: 100%;
+    background-color: #fff;
+    cursor: crosshair;
+    touch-action: none;
+}
+
+.canvas-container {
+    background-color: #fff;
+    height: 100%;
+    display: flex;
+    flex-direction: column;
+    overflow: hidden;
+}
+
+.canvas-column {
+    flex-grow: 1;
+    display: flex;
+    flex-direction: column;
+    background-color: #fff;
+    border-radius: 4px;
+    overflow: hidden;
 }
 
 /* Adjustments for mobile view */
