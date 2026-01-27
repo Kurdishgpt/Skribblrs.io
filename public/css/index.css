@@ -211,10 +211,12 @@ a:hover {
     display: flex;
     align-items: center;
     justify-content: center;
+    background-color: #b38bff;
+    border-radius: 4px;
 }
 
 .brush-indicator .brush-dot {
-    background-color: #000 !important;
+    background-color: #fff !important;
 }
 
 .brush-palette {
