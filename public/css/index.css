@@ -221,6 +221,14 @@ a:hover {
     color: #fff !important;
 }
 
+.tool-item .brush-dot {
+    background-color: #000 !important;
+}
+
+.tool-item.active .brush-dot {
+    background-color: #fff !important;
+}
+
 .selected-color {
     width: 36px;
     height: 36px;
@@ -235,6 +243,10 @@ a:hover {
     display: flex;
     align-items: center;
     justify-content: center;
+}
+
+.brush-indicator .brush-dot {
+    background-color: #000 !important;
 }
 
 .brush-palette {
@@ -275,12 +287,25 @@ a:hover {
     background-color: #f0f0f0;
 }
 
-.brush-palette .brush-item.active {
-    background-color: #b38bff !important;
+.brush-dot {
+    background-color: #000 !important;
+    border-radius: 50%;
+}
+
+.brush-palette .brush-item .brush-dot {
+    background-color: #000 !important;
 }
 
 .brush-palette .brush-item.active .brush-dot {
-    background-color: #fff;
+    background-color: #fff !important;
+}
+
+.brush-indicator .brush-dot {
+    background-color: #000 !important;
+}
+
+.brush-palette .brush-item.active {
+    background-color: #b38bff !important;
 }
 
 .brush-palette::after {
