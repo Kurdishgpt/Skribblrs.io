@@ -377,6 +377,47 @@ body {
     border-color: #ffecb5;
 }
 
+.players-column {
+    width: 100px;
+    flex-shrink: 0;
+    background-color: #2c5aa0;
+    overflow-y: auto;
+}
+
+.player-row {
+    background: #fff;
+    margin-bottom: 4px;
+    padding: 8px 4px;
+    border-radius: 4px;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    text-align: center;
+}
+
+.player-avatar {
+    width: 60px;
+    height: 60px;
+    margin-bottom: 4px;
+}
+
+.player-name {
+    font-size: 13px;
+    font-weight: bold;
+    margin: 0;
+    width: 100%;
+    overflow: hidden;
+    text-overflow: ellipsis;
+    white-space: nowrap;
+}
+
+.player-score {
+    font-size: 16px;
+    font-weight: 900;
+    margin: 0;
+    color: #333;
+}
+
 @media (max-width: 992px) {
     .messages {
         height: 5em;

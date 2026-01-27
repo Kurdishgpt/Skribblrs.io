@@ -65,7 +65,7 @@ function createScoreCard(players) {
         scoreP.classList.add('player-score');
         
         nameP.textContent = player.name;
-        scoreP.textContent = 'Points: 0';
+        scoreP.textContent = '0';
         
         div.id = `skribblr-${player.id}`;
         avatarDiv.append(img);
@@ -201,10 +201,10 @@ socket.on('updateScore', ({
     drawerScore,
 }) => {
     const playerEl = document.querySelector(`#skribblr-${playerID} .player-score`);
-    if (playerEl) playerEl.textContent = `Points: ${score}`;
+    if (playerEl) playerEl.textContent = `${score}`;
     
     const drawerEl = document.querySelector(`#skribblr-${drawerID} .player-score`);
-    if (drawerEl) drawerEl.textContent = `Points: ${drawerScore}`;
+    if (drawerEl) drawerEl.textContent = `${drawerScore}`;
 });
 
 socket.on('endGame', async ({ stats }) => {
