@@ -39,6 +39,7 @@ class Game {
 
     async startGame() {
         const { io, socket } = this;
+        if (!games[socket.roomID]) return;
         const { rounds } = games[socket.roomID];
         const players = Array.from(await io.in(socket.roomID).allSockets());
         socket.to(socket.roomID).emit('startGame');
@@ -56,11 +57,12 @@ class Game {
     async giveTurnTo(players, i) {
         const { io, socket } = this;
         const { roomID } = socket;
+        if (!games[roomID]) return;
         const { time } = games[roomID];
         const player = players[i];
         const prevPlayer = players[(i - 1 + players.length) % players.length];
         const drawer = io.of('/').sockets.get(player);
-        if (!drawer || !games[roomID]) return;
+        if (!drawer) return;
         this.resetGuessedFlag(players);
         games[roomID].totalGuesses = 0;
         games[roomID].currentWord = '';
