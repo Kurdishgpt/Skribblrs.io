@@ -164,10 +164,10 @@ a:hover {
 
 .toolbar {
     display: flex;
+    flex-direction: column;
     align-items: center;
     justify-content: center;
     gap: 10px;
-    flex-wrap: wrap;
     background-color: #ffffff !important;
 }
 
@@ -175,30 +175,36 @@ a:hover {
     display: flex;
     gap: 8px;
     align-items: center;
+    justify-content: center;
+    width: 100%;
 }
 
-.tool-btn, .brush-item {
-    width: 45px;
-    height: 45px;
-    background-color: #f8f9fa;
-    border: 1px solid #dee2e6;
-    border-radius: 6px;
+.tool-btn, .brush-item, .selected-color {
+    width: 55px;
+    height: 55px;
+    background-color: #f0f0f0;
+    border: 1px solid #ddd;
+    border-radius: 8px;
     display: flex;
     align-items: center;
     justify-content: center;
     cursor: pointer;
-    box-shadow: 0 1px 2px rgba(0,0,0,0.05);
-    color: #495057;
+    box-shadow: 0 2px 4px rgba(0,0,0,0.05);
+    color: #444;
+}
+
+.selected-color {
+    border-width: 2px;
 }
 
 .tool-btn:hover, .brush-item:hover {
-    background-color: #e9ecef;
+    background-color: #e5e5e5;
 }
 
 .tool-btn.active, .brush-item.active {
-    background-color: #b38bff;
-    border-color: #8a2be2;
-    color: #ffffff;
+    background-color: #b38bff !important;
+    border-color: #8a2be2 !important;
+    color: #ffffff !important;
 }
 
 .tool-btn svg {
@@ -207,6 +213,14 @@ a:hover {
 
 .tool-btn.active svg {
     stroke: #ffffff;
+}
+
+.brush-dot {
+    background-color: #444;
+}
+
+.brush-item.active .brush-dot {
+    background-color: #fff;
 }
 
 /* Chat box styling */
