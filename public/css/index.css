@@ -182,43 +182,51 @@ a:hover {
 .toolbar {
     display: flex;
     flex-direction: row;
+    flex-wrap: nowrap;
     align-items: center;
     justify-content: center;
-    gap: 4px;
+    gap: 8px;
     background-color: transparent !important;
 }
 
 .tool-group {
     display: flex;
+    flex-direction: row;
+    flex-wrap: nowrap;
     align-items: center;
     background-color: transparent;
     border: none;
     border-radius: 0;
     overflow: visible;
-    gap: 4px;
+    gap: 8px;
 }
 
 .tool-item {
-    width: 48px;
-    height: 48px;
+    width: 42px;
+    height: 42px;
+    flex-shrink: 0;
     display: flex;
     align-items: center;
     justify-content: center;
     cursor: pointer;
-    border: 1px solid rgba(255,255,255,0.2);
+    border: 1px solid rgba(0,0,0,0.1);
     border-radius: 4px;
     background-color: #fff;
-    color: #000;
+    color: #444;
+    transition: all 0.2s ease;
 }
 
 .tool-item:hover {
-    background-color: #f0f0f0;
+    background-color: #f8f9fa;
+    border-color: #ccc;
+    transform: translateY(-1px);
 }
 
 .tool-item.active {
-    background-color: #b38bff !important;
-    border-color: #fff !important;
+    background-color: #007bff !important;
+    border-color: #0056b3 !important;
     color: #fff !important;
+    box-shadow: 0 2px 4px rgba(0,0,0,0.1);
 }
 
 .tool-item .brush-dot {
@@ -230,11 +238,11 @@ a:hover {
 }
 
 .selected-color {
-    width: 36px;
-    height: 36px;
+    width: 32px;
+    height: 32px;
     border: 2px solid #fff;
     border-radius: 4px;
-    box-shadow: 0 0 0 1px #888;
+    box-shadow: 0 0 0 1px #dee2e6;
 }
 
 .brush-indicator {
