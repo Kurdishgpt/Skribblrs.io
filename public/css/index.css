@@ -219,6 +219,22 @@ a:hover {
     background-color: #fff !important;
 }
 
+.color-palette {
+    position: absolute;
+    bottom: 58px;
+    left: 50%;
+    transform: translateX(-50%);
+    background-color: #fff;
+    border: 1px solid #ccc;
+    border-radius: 4px;
+    box-shadow: 0 4px 15px rgba(0,0,0,0.2);
+    z-index: 1000;
+    padding: 8px;
+    display: flex;
+    flex-direction: column;
+    min-width: 280px;
+}
+
 .brush-palette {
     position: absolute;
     bottom: 58px;
@@ -278,7 +294,8 @@ a:hover {
     background-color: #b38bff !important;
 }
 
-.brush-palette::after {
+.brush-palette::after,
+.color-palette::after {
     content: '';
     position: absolute;
     bottom: -8px;
