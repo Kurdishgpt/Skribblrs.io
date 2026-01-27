@@ -378,10 +378,7 @@ body {
 }
 
 .players-column {
-    width: 100px;
-    flex-shrink: 0;
-    background-color: #2c5aa0;
-    overflow-y: auto;
+    display: none !important;
 }
 
 .player-row {
