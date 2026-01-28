@@ -8,7 +8,7 @@ const playerName = document.querySelector('#playerName');
 const baseURL = 'https://api.dicebear.com/9.x';
 const my = {
     name: localStorage.getItem('name') || '',
-    avatar: localStorage.getItem('avatar') || 'https://api.dicebear.com/9.x/avataaars/svg?seed=default',
+    avatar: localStorage.getItem('avatar') || 'https://api.dicebear.com/9.x/bottts/svg?seed=default',
 };
 
 const settings = document.createElement('script');
