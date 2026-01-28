@@ -152,7 +152,19 @@ function throttle(callback, delay) {
     };
 }
 
-window.addEventListener('resize', () => pad.resize(canvas.offsetWidth));
+window.addEventListener('resize', () => {
+    const width = canvas.offsetWidth;
+    const height = canvas.offsetHeight;
+    pad.resize(width);
+    // If Sketchpad supports height adjustment, it might need to be set here
+    // Some versions of Sketchpad only take one dimension.
+});
+
+// Initial resize to ensure bounds are correct
+setTimeout(() => {
+    pad.resize(canvas.offsetWidth);
+}, 500);
+
 canvas.addEventListener('mousedown', onMouseDown);
 canvas.addEventListener('mouseup', throttle(onMouseUp, 10));
 canvas.addEventListener('mousemove', throttle(onMouseMove, 10));
