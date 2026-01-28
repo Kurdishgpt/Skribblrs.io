@@ -135,6 +135,8 @@ socket.on('settingsUpdate', (data) => {
     document.querySelector('#rounds').value = data.rounds;
     document.querySelector('#time').value = data.time;
     document.querySelector('#language').value = data.language;
+    document.querySelector('#hints').value = data.hints || 0;
+    document.querySelector('#wordCount').value = data.wordCount || 0;
     // eslint-disable-next-line no-global-assign
     language = data.language;
     if (language === 'kurdish') return;

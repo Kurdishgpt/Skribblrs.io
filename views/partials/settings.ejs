@@ -43,6 +43,27 @@
                     <option value="kurdish" selected>کوردی</option>
                 </select>
             </div>
+            <div class="input-group mb-3">
+                <label class="input-group-text" for="hints">ئاماژەکان (Hints)</label>
+                <select class="form-select" id="hints">
+                    <option value="0">ناچالاک</option>
+                    <option value="1">١ ئاماژە</option>
+                    <option value="2" selected>٢ ئاماژە</option>
+                    <option value="3">٣ ئاماژە</option>
+                </select>
+            </div>
+            <div class="input-group mb-3">
+                <label class="input-group-text" for="wordCount">ژمارەی پیتەکان</label>
+                <select class="form-select" id="wordCount">
+                    <option value="0" selected>هەموو وشەکان</option>
+                    <option value="3">٣ پیت</option>
+                    <option value="4">٤ پیت</option>
+                    <option value="5">٥ پیت</option>
+                    <option value="6">٦ پیت</option>
+                    <option value="7">٧ پیت</option>
+                    <option value="8">٨ پیت</option>
+                </select>
+            </div>
             <% if(!roomID) { %>
             <div class="input-group mb-3">
                 <label class="input-group-text" for="customeWords">وشەکانی تایبەت</label>
