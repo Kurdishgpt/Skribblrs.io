@@ -333,11 +333,19 @@ a:hover {
 
 
 /* Chat box styling */
+.chat-column {
+    width: 300px;
+    flex-shrink: 0;
+    display: flex;
+    flex-direction: column;
+}
+
 .chat-panel {
     background-color: #ffffff;
     border: none;
     display: flex;
     flex-direction: column;
+    height: 100%;
 }
 
 .chat-input-form {
