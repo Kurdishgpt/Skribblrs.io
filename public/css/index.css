@@ -103,6 +103,7 @@ a:hover {
     border-radius: 4px;
     position: relative;
     min-height: 400px;
+    overflow-x: auto;
 }
 
 .canvas-container {
@@ -112,7 +113,8 @@ a:hover {
     flex-direction: column;
     height: 100%;
     position: relative;
-    overflow: hidden;
+    width: 200%;
+    min-width: 1000px;
 }
 
 #sketchpad {

@@ -157,9 +157,34 @@ canvas.addEventListener('mousedown', onMouseDown);
 canvas.addEventListener('mouseup', throttle(onMouseUp, 10));
 canvas.addEventListener('mousemove', throttle(onMouseMove, 10));
 
-canvas.addEventListener('touchstart', onMouseDown, { passive: false });
-canvas.addEventListener('touchend', throttle(onMouseUp, 10), { passive: false });
-canvas.addEventListener('touchmove', throttle(onMouseMove, 10), { passive: false });
+let holdTimer;
+const canvasColumn = document.querySelector('.canvas-column');
+
+function startScroll(direction) {
+    holdTimer = setInterval(() => {
+        canvasColumn.scrollLeft += direction * 10;
+    }, 20);
+}
+
+function stopScroll() {
+    clearInterval(holdTimer);
+}
+
+canvas.addEventListener('touchstart', (e) => {
+    if (e.touches.length === 1 && e.touches[0].clientX < 50) {
+        startScroll(-1);
+    } else if (e.touches.length === 1 && e.touches[0].clientX > window.innerWidth - 50) {
+        startScroll(1);
+    }
+    onMouseDown(e);
+}, { passive: false });
+
+canvas.addEventListener('touchend', (e) => {
+    stopScroll();
+    throttle(onMouseUp, 10)(e);
+}, { passive: false });
+
+canvas.addEventListener('touchcancel', stopScroll);
 
 socket.on('clearCanvas', () => pad.clear());
 socket.on('drawing', ({
