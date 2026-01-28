@@ -84,22 +84,26 @@ function onMouseDown(e) {
     if (pad.readOnly || !pad.sketching) return;
     const rect = canvas.getBoundingClientRect();
     const { width: w, height: h } = pad.getCanvasSize();
-    current.x = (e.clientX - rect.left) / w;
-    current.y = (e.clientY - rect.top) / h;
+    const clientX = e.touches ? e.touches[0].clientX : e.clientX;
+    const clientY = e.touches ? e.touches[0].clientY : e.clientY;
+    current.x = (clientX - rect.left) / w;
+    current.y = (clientY - rect.top) / h;
 }
 
 function onMouseUp(e) {
     if (pad.readOnly) return;
     const rect = canvas.getBoundingClientRect();
     const { width: w, height: h } = pad.getCanvasSize();
+    const clientX = e.changedTouches ? e.changedTouches[0].clientX : e.clientX;
+    const clientY = e.changedTouches ? e.changedTouches[0].clientY : e.clientY;
     socket.emit('drawing', {
         start: {
             x: current.x,
             y: current.y,
         },
         end: {
-            x: (e.clientX - rect.left) / w,
-            y: (e.clientY - rect.top) / h,
+            x: (clientX - rect.left) / w,
+            y: (clientY - rect.top) / h,
         },
         lineColor: current.lineColor,
         lineSize: current.lineSize,
@@ -110,20 +114,31 @@ function onMouseMove(e) {
     if (pad.readOnly || !pad.sketching) return;
     const { width: w, height: h } = pad.getCanvasSize();
     const rect = canvas.getBoundingClientRect();
+    const clientX = e.touches ? e.touches[0].clientX : e.clientX;
+    const clientY = e.touches ? e.touches[0].clientY : e.clientY;
+    
+    // Prevent drawing if coordinates are outside bounds
+    const x = (clientX - rect.left) / w;
+    const y = (clientY - rect.top) / h;
+    
+    if (x < 0 || x > 1 || y < 0 || y > 1) return;
+
     socket.emit('drawing', {
         start: {
             x: current.x,
             y: current.y,
         },
         end: {
-            x: (e.clientX - rect.left) / w,
-            y: (e.clientY - rect.top) / h,
+            x: x,
+            y: y,
         },
         lineColor: current.lineColor,
         lineSize: current.lineSize,
     });
-    current.x = (e.clientX - rect.left) / w;
-    current.y = (e.clientY - rect.top) / h;
+    current.x = x;
+    current.y = y;
+    
+    if (e.touches) e.preventDefault();
 }
 
 function throttle(callback, delay) {
@@ -141,6 +156,10 @@ window.addEventListener('resize', () => pad.resize(canvas.offsetWidth));
 canvas.addEventListener('mousedown', onMouseDown);
 canvas.addEventListener('mouseup', throttle(onMouseUp, 10));
 canvas.addEventListener('mousemove', throttle(onMouseMove, 10));
+
+canvas.addEventListener('touchstart', onMouseDown, { passive: false });
+canvas.addEventListener('touchend', throttle(onMouseUp, 10), { passive: false });
+canvas.addEventListener('touchmove', throttle(onMouseMove, 10), { passive: false });
 
 socket.on('clearCanvas', () => pad.clear());
 socket.on('drawing', ({
