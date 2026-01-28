@@ -38,6 +38,8 @@ function updateSettings(e) {
         customWords: Array.from(new Set(document.querySelector('#customWords').value.split('\n').map((word) => word.trim()).filter((word) => word !== ''))),
         probability: document.querySelector('#probability').value,
         language: document.querySelector('#language').value,
+        hints: document.querySelector('#hints').value,
+        wordCount: document.querySelector('#wordCount').value,
     });
 }
 
@@ -93,6 +95,8 @@ if (searchParams.has('id')) {
     // player
     document.querySelector('#rounds').setAttribute('disabled', true);
     document.querySelector('#time').setAttribute('disabled', true);
+    document.querySelector('#hints').setAttribute('disabled', true);
+    document.querySelector('#wordCount').setAttribute('disabled', true);
     document.querySelector('#startGame').setAttribute('disabled', true);
     document.querySelector('#language').setAttribute('disabled', true);
     document.querySelector('#playGame').addEventListener('click', async () => {
@@ -111,6 +115,8 @@ if (searchParams.has('id')) {
     // room owner
     document.querySelector('#rounds').addEventListener('input', updateSettings);
     document.querySelector('#time').addEventListener('input', updateSettings);
+    document.querySelector('#hints').addEventListener('change', updateSettings);
+    document.querySelector('#wordCount').addEventListener('change', updateSettings);
     document.querySelector('#customWords').addEventListener('change', updateSettings);
     document.querySelector('#probability').addEventListener('change', updateSettings);
     document.querySelector('#language').addEventListener('change', updateSettings);

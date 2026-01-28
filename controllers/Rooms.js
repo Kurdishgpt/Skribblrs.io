@@ -15,6 +15,8 @@ class Room {
             time: 40 * 1000,
             customWords: [],
             language: 'kurdish',
+            hints: 2,
+            wordCount: 0,
         };
         games[id][socket.id] = {};
         games[id][socket.id].score = 0;
@@ -39,6 +41,8 @@ class Room {
                 time: 40 * 1000,
                 customWords: [],
                 language: 'kurdish',
+                hints: 2,
+                wordCount: 0,
             };
         }
         
@@ -71,6 +75,8 @@ class Room {
         games[socket.roomID].probability = Number(data.probability);
         games[socket.roomID].customWords = customWords;
         games[socket.roomID].language = data.language;
+        games[socket.roomID].hints = Number(data.hints);
+        games[socket.roomID].wordCount = Number(data.wordCount);
         socket.to(socket.roomID).emit('settingsUpdate', rest);
         console.log(games[socket.roomID]);
     }

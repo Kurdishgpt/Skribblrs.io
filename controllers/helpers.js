@@ -27,17 +27,26 @@ function populateDisplayTime(hints, roomID) {
 function getHints(word, roomID) {
     let hints = [];
     const wordLength = splitter.countGraphemes(word);
-    const hintsCount = Math.floor(0.7 * wordLength);
+    const hintsCount = games[roomID].hints || 0;
+    if (hintsCount === 0) return [];
+    
     const graphemes = splitter.splitGraphemes(word);
     let prevHint = graphemes.map((char) => (char !== ' ' ? '_' : ' '));
-    while (hints.length !== hintsCount) {
-        const pos = chance.integer({ min: 0, max: wordLength - 1 });
-        // eslint-disable-next-line no-continue
-        if (prevHint[pos] !== '_') continue;
-        prevHint = [...prevHint.slice(0, pos), graphemes[pos], ...prevHint.slice(pos + 1)];
-        hints.push(prevHint);
+    
+    // Determine how many letters to reveal. Let's say we reveal up to hintsCount letters.
+    // We want to generate a sequence of hints where each hint reveals one more letter.
+    const revealIndices = [];
+    for (let i = 0; i < wordLength; i++) {
+        if (graphemes[i] !== ' ') revealIndices.push(i);
     }
-    hints = hints.map((hint) => hint.join(''));
+    
+    const pickedIndices = chance.pickset(revealIndices, Math.min(hintsCount, revealIndices.length));
+    
+    pickedIndices.forEach((pos) => {
+        prevHint[pos] = graphemes[pos];
+        hints.push(prevHint.join(''));
+    });
+    
     return populateDisplayTime(hints, roomID);
 }
 
@@ -52,12 +61,21 @@ function wait(roomID, drawer, ms) {
 }
 
 function get3Words(roomID) {
-    const { probability: p } = games[roomID];
+    const { probability: p, wordCount } = games[roomID];
     const language = games[roomID].language.toLowerCase();
-    if (games[roomID].customWords.length < 3) return chance.pickset(words[language], 3);
+    
+    let availableWords = words[language];
+    if (wordCount > 0) {
+        availableWords = availableWords.filter(w => splitter.countGraphemes(w) === wordCount);
+        // Fallback if no words match the count
+        if (availableWords.length < 3) availableWords = words[language];
+    }
+
+    if (games[roomID].customWords.length < 3) return chance.pickset(availableWords, 3);
+    
     const pickedWords = new Set();
     while (pickedWords.size !== 3) {
-        const wordSet = chance.weighted([words[language], games[roomID].customWords], [1 - p, p]);
+        const wordSet = chance.weighted([availableWords, games[roomID].customWords], [1 - p, p]);
         pickedWords.add(chance.pickone(wordSet));
     }
     return Array.from(pickedWords);
